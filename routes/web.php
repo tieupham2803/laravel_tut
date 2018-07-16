@@ -39,3 +39,13 @@ Route::get('sendemail', function () {
     return "Your email has been sent successfully";
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('users/register', 'Auth\RegisterController@register');
+Route:: get(' users/login' , ' Auth\LoginController@showLoginForm');
+Route:: post(' users/login' , ' Auth\LoginController@login');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
