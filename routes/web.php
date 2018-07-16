@@ -39,3 +39,28 @@ Route::get('sendemail', function () {
     return "Your email has been sent successfully";
 
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('users/register', 'Auth\RegisterController@register');
+Route:: get(' users/login' , ' Auth\LoginController@showLoginForm');
+Route:: post(' users/login' , ' Auth\LoginController@login');
+Route:: get(' users/logout' , ' Auth\LoginController@logout' ) ;
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(array('prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>'manager' )
+, function () {
+    Route::get('/', 'PagesController@home');
+    Route::get('users', [ 'as' => 'admin.user.index', 'uses' => 'UsersController@index']);
+    Route::get('users/{id?}/edit', 'UsersController@edit');
+    Route::post('users/{id?}/edit','UsersController@update');
+    Route::get('roles', 'RolesController@index');
+    Route::get('roles/create', 'RolesController@create');
+    Route::post('roles/create', 'RolesController@store');
+    Route::get('users/{id?}/edit', 'UsersController@edit');
+    Route::post('users/{id?}/edit','UsersController@update');
+}) ;
