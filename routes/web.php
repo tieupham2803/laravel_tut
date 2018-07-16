@@ -61,4 +61,6 @@ Route::group(array('prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>'m
     Route::get('roles', 'RolesController@index');
     Route::get('roles/create', 'RolesController@create');
     Route::post('roles/create', 'RolesController@store');
+    Route::get('users/{id?}/edit', 'UsersController@edit');
+    Route::post('users/{id?}/edit','UsersController@update');
 }) ;
