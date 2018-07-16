@@ -1,6 +1,4 @@
-{{-- @extends('layouts.app') --}}
-{{-- @extends('master.blade') --}}
-@extends('master')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">

@@ -76,7 +76,9 @@
 </div>
 @endsection
  --}}
- @extends('master')
+ {{-- @extends('master') --}}
+ @extends('layouts.app')
+
 @section('name', 'Register')
 
 @section('content')
