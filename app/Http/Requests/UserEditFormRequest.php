@@ -25,8 +25,8 @@ class UserEditFormRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email'=> 'required',
-            'role'=> 'required',
+            'email' => 'required',
+            'role' => 'required',
         ];
     }
 }

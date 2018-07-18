@@ -39,17 +39,17 @@ class TicketsController extends Controller
     public function store(TicketFormRequest $request)
     {
         $slug = uniqid();
-        $ticket = new Ticket(array(
+        $ticket = new Ticket([
             'title' => $request->get('title'),
             'content' => $request->get('content'),
-            'slug' => $slug
-        ));
+            'slug' => $slug,
+        ]);
 
         $ticket->save();
 
-        $data = array(
+        $data = [
             'ticket' => $slug,
-        );
+        ];
 
 //        Mail::send('emails.ticket', $data, function ($message) {
 //            $message->from('yourEmail@domain.com', 'Learning Laravel');
@@ -97,14 +97,14 @@ class TicketsController extends Controller
         $ticket = Ticket::whereSlug($slug)->firstOrFail();
         $ticket->title = $request->get('title');
         $ticket->content = $request->get('content');
-        if($request->get('status') != null) {
+        if ($request->get('status') != null) {
             $ticket->status = 0;
         } else {
             $ticket->status = 1;
         }
         $ticket->save();
-        return redirect(action('TicketsController@edit', $ticket->slug))->with('status', 'The ticket '.$slug.' has been updated!');
-
+        return redirect(action('TicketsController@edit', $ticket->slug))
+        ->with('status', 'The ticket '.$slug.' has been updated!');
     }
 
     /**
