@@ -8,7 +8,6 @@ use App\User;
 use Spatie\Permission\Models\Role;
 use App\Http\Requests\UserEditFormRequest;
 use Illuminate\Support\Facades\Hash;
-
 class UsersController extends Controller
 {
     //
@@ -17,7 +16,7 @@ class UsersController extends Controller
         $users = User::all();
         return view('backend.users.index', compact('users'));
     }
-    public function edit($id)
+	public function edit($id)
     {
         $user = User::whereId($id)->firstOrFail();
         $roles = Role::all();
@@ -31,7 +30,7 @@ class UsersController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $password = $request->get('password');
-        if ($password != '') {
+        if($password != "") {
             $user->password = Hash::make($password);
         }
         $user->save();
